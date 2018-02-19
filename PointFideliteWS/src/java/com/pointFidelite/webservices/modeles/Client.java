@@ -11,15 +11,15 @@ package com.pointFidelite.webservices.modeles;
  */
 public class Client {
     
-    private int idClient;
+    private String idClient;
     private long nombreDePoint;
     private double soldeEnArgent;
 
-    public int getIdClient() {
+    public String getIdClient() {
         return idClient;
     }
 
-    public void setIdClient(int idClient) {
+    public void setIdClient(String idClient) {
         this.idClient = idClient;
     }
 

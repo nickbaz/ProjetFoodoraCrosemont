@@ -13,7 +13,7 @@ public class SuccursaleMembre {
     
     private int idSuccursale;
     private String nomSuccursale;
-    private long tauxRemise;
+    private double tauxRemise;
 
     public int getIdSuccursale() {
         return idSuccursale;
@@ -31,11 +31,11 @@ public class SuccursaleMembre {
         this.nomSuccursale = nomSuccursale;
     }
 
-    public long getTauxRemise() {
+    public double getTauxRemise() {
         return tauxRemise;
     }
 
-    public void setTauxRemise(long pourcentageRemise) {
+    public void setTauxRemise(double pourcentageRemise) {
         this.tauxRemise = pourcentageRemise;
     }
 }

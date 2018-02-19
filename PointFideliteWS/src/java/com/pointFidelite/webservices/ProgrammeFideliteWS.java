@@ -5,6 +5,8 @@
  */
 package com.pointFidelite.webservices;
 
+import com.pointFidelite.webservices.dao.ClientDAO;
+import com.pointFidelite.webservices.dao.SuccursaleDAO;
 import com.pointFidelite.webservices.modeles.Client;
 import com.pointFidelite.webservices.modeles.SuccursaleMembre;
 
@@ -21,8 +23,9 @@ public class ProgrammeFideliteWS {
     private Client client;
     private SuccursaleMembre succursaleMembre;
     
+    
     @WebMethod(operationName = "openTransaction")
-    public void openTransaction(int idClient, int idSuccursale){
+    public void openTransaction(String idClient, int idSuccursale){
         client = ClientDAO.getClient(idClient);
         succursaleMembre = SuccursaleDAO.getSuccursale(idSuccursale);
     }
@@ -40,8 +43,8 @@ public class ProgrammeFideliteWS {
     }
     
     @WebMethod(operationName = "getSoldeClient")
-    public long getSoldeClient(int id){
-        return ClientDAO.getSolde(id);
+    public long getSoldeClient(String id){
+        return ClientDAO.getClient(id).getNombreDePoint();
     }
     
     @WebMethod(operationName = "usePoints")
