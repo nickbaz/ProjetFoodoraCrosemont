@@ -25,7 +25,7 @@ import javax.ws.rs.core.MediaType;
  * @author Vengor
  */
 @Stateless
-@Path("com.nrobillard.modele.suivicommande")
+@Path("suivi")
 public class SuiviCommandeFacadeREST extends AbstractFacade<SuiviCommande>
 {
 
@@ -81,7 +81,7 @@ public class SuiviCommandeFacadeREST extends AbstractFacade<SuiviCommande>
     @Override
     @Produces(
     {
-        MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON
+        /*MediaType.APPLICATION_XML,*/ MediaType.APPLICATION_JSON
     })
     public List<SuiviCommande> findAll()
     {
