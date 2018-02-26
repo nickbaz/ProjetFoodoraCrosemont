@@ -40,7 +40,7 @@ public class ClientDAO extends DAO<Client> {
             {
                 Client c = new Client();
                 c.setIdClient(r.getString("numero"));
-                c.setNombreDePoint(r.getLong("soldePoints"));
+                c.setNombreDePoint(r.getInt("soldePoints"));
                 c.setSoldeEnArgent(r.getDouble("soldeArgent"));				
                 r.close();
                 stm.close();
@@ -61,11 +61,40 @@ public class ClientDAO extends DAO<Client> {
             }			
         }
         return null;
-    }
+    }    
+    
   
     @Override
-    public boolean update(Client x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean update(Client c) {
+        PreparedStatement stm = null;
+        try 
+        {
+
+            stm = cnx.prepareStatement("UPDATE client SET soldePoints = ?, soldeArgent = ? WHERE id = ?");
+            stm.setInt(1, c.getNombreDePoint());
+            stm.setDouble(2, c.getSoldeEnArgent());
+            stm.setString(3, c.getIdClient());
+            int n= stm.executeUpdate();
+            if (n>0)
+            {
+                stm.close();
+                return true;
+            }
+        }
+        catch (SQLException exp)
+        {
+        }
+        finally
+        {
+            if (stm!=null)
+            try {
+                stm.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }			
+        }
+        return false;
     }
 
     @Override

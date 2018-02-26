@@ -12,7 +12,7 @@ package com.pointFidelite.webservices.modeles;
 public class Client {
     
     private String idClient;
-    private long nombreDePoint;
+    private int nombreDePoint;
     private double soldeEnArgent;
 
     public String getIdClient() {
@@ -23,11 +23,11 @@ public class Client {
         this.idClient = idClient;
     }
 
-    public long getNombreDePoint() {
+    public int getNombreDePoint() {
         return nombreDePoint;
-    }
+    }    
 
-    public void setNombreDePoint(long nombreDePoint) {
+    public void setNombreDePoint(int nombreDePoint) {
         this.nombreDePoint = nombreDePoint;
     }
 

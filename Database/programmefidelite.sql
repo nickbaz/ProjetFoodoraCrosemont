@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Lun 19 Février 2018 à 14:35
--- Version du serveur :  5.7.11
+-- Généré le :  Lun 26 Février 2018 à 15:04
+-- Version du serveur :  5.7.21-log
 -- Version de PHP :  5.6.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `programmefidelite`
 --
-CREATE DATABASE IF NOT EXISTS `programmefidelite` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+CREATE DATABASE IF NOT EXISTS `programmefidelite` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `programmefidelite`;
 
 -- --------------------------------------------------------
@@ -33,15 +33,7 @@ CREATE TABLE `client` (
   `numero` varchar(255) NOT NULL,
   `soldePoints` int(11) NOT NULL,
   `soldeArgent` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `client`
---
-
-INSERT INTO `client` (`numero`, `soldePoints`, `soldeArgent`) VALUES
-('12345', 1000, 10),
-('345677', 2560, 25.6);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -53,18 +45,8 @@ DROP TABLE IF EXISTS `succursalemembre`;
 CREATE TABLE `succursalemembre` (
   `id` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
-  `tauxRemise` double NOT NULL DEFAULT '0.01'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `succursalemembre`
---
-
-INSERT INTO `succursalemembre` (`id`, `nom`, `tauxRemise`) VALUES
-(1, 'Pizza Hub', 0.01),
-(2, 'MAC Donald\'s', 0.05),
-(3, 'Burger Ping', 0.02),
-(6, 'Float Pizza', 0.01);
+  `tauxRemise` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Index pour les tables exportées
@@ -82,6 +64,15 @@ ALTER TABLE `client`
 ALTER TABLE `succursalemembre`
   ADD PRIMARY KEY (`id`);
 
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `succursalemembre`
+--
+ALTER TABLE `succursalemembre`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
