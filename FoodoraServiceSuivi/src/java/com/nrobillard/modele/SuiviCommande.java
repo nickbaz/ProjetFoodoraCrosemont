@@ -42,26 +42,20 @@ public class SuiviCommande implements Serializable
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "Numero")
     private Integer numero;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "Status")
+    @Column(name = "Status", length = 100)
     private String status;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "Emplacement")
+    @Column(name = "Emplacement", length = 100)
     private String emplacement;
     @Basic(optional = false)
-    @NotNull
+    //@NotNull
     @Column(name = "DateCommande")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCommande;
     @Basic(optional = false)
-    @NotNull
+    //@NotNull
     @Column(name = "DateComplet")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateComplet;
