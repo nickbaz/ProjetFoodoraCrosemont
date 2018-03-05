@@ -42,14 +42,14 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
 
     @POST
     @Override
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     public void create(Client entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") String id, Client entity) {
         super.edit(entity);
     }
@@ -62,21 +62,21 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
 
     @GET
     @Path("{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public Client find(@PathParam("id") String id) {
         return super.find(id);
     }
 
     @GET
     @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Client> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Client> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
@@ -96,36 +96,37 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
     @GET
     @Path("makeTransaction/{costBeforeTaxes}/{succursaleId}/{numeroClient}")
     @Produces(MediaType.APPLICATION_JSON)
-    public int makeTransaction(@PathParam("costBeforeTaxes") Double cost, @PathParam("succursale") Integer succursaleId, @PathParam("numeroClient") String numeroClient) {
+    public String makeTransaction(@PathParam("costBeforeTaxes") Double cost, @PathParam("succursale") Integer succursaleId, @PathParam("numeroClient") String numeroClient) {
         if (succursalemembreFacadeREST.isSuccursaleMembre(succursaleId)) {
             Succursalemembre succMembre = succursalemembreFacadeREST.find(succursaleId);
             double nbrArgent = succMembre.getTauxRemise() * cost;
             int nbrPts = (int) nbrArgent * 100;
             addPoints(numeroClient, nbrPts);
-            return nbrPts;
+            return "[{\"soldePoints\" : "+nbrPts+"}]";
         }
-        return 0;
+        return "";
     }
     
     @GET
     @Path("getSoldePoints/{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public int getSoldePoints(@PathParam("id") String id){
-        Client c = this.find(id);
-        return c.getSoldePoints();
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getSoldePoints(@PathParam("id") String id){
+        Client c = this.find(id);                   
+        return "[{\"soldePoints\" : "+c.getSoldePoints()+"}]";
     }
     
     @GET
     @Path("getSoldeArgent/{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public double getSoldeArgent(@PathParam("id") String id){
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getSoldeArgent(@PathParam("id") String id){
         Client c = this.find(id);
-        return c.getSoldeArgent();
+        return "[{\"soldeArgent\" : "+c.getSoldeArgent()+"}]";        
+        
     }
     
     @POST
     @Path("addPoints/{id}/{pts}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public void addPoints(@PathParam("id") String id, @PathParam("pts") int pts){
         Client c = this.find(id);
         int ancienSoldePts = c.getSoldePoints();
@@ -137,13 +138,13 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
     
     @GET
     @Path("usePoints/{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public double usePoints(@PathParam("id") String id){
+    @Produces({MediaType.APPLICATION_JSON})
+    public String usePoints(@PathParam("id") String id){
         Client c = this.find(id);
         double soldeArgent = c.getSoldeArgent();
         c.setSoldePoints(0);
         c.setSoldeArgent(0.00);
         this.edit(id, c);
-        return soldeArgent;
+        return "[{\"soldeArgent\" : "+soldeArgent+"}]";
     }
 }

@@ -99,9 +99,9 @@ public class SuccursalemembreFacadeREST extends AbstractFacade<Succursalemembre>
     @GET
     @Path("getTauxRemise/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public double getTauxRemise(@PathParam("id") Integer id) {
+    public String getTauxRemise(@PathParam("id") Integer id) {
         Succursalemembre succMembre = super.find(id);
-        return succMembre.getTauxRemise();
+        return "[{\"tauxRemise\" : "+succMembre.getTauxRemise()+"}]";
     }
     
 }
