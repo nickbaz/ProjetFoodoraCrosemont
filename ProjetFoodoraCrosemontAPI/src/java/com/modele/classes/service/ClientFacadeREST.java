@@ -123,7 +123,7 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
         return c.getSoldeArgent();
     }
     
-    @GET
+    @POST
     @Path("addPoints/{id}/{pts}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void addPoints(@PathParam("id") String id, @PathParam("pts") int pts){
