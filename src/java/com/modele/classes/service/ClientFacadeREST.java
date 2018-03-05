@@ -94,14 +94,14 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
     }    
     
     @GET
-    @Path("makeTransaction/{costBeforeTaxes}/{succursaleId}/{clientId}")
+    @Path("makeTransaction/{costBeforeTaxes}/{succursaleId}/{numeroClient}")
     @Produces(MediaType.APPLICATION_JSON)
-    public int makeTransaction(@PathParam("costBeforeTaxes") Double cost, @PathParam("succursale") Integer succursaleId, @PathParam("clientId") String clientId) {
+    public int makeTransaction(@PathParam("costBeforeTaxes") Double cost, @PathParam("succursale") Integer succursaleId, @PathParam("numeroClient") String numeroClient) {
         if (succursalemembreFacadeREST.isSuccursaleMembre(succursaleId)) {
             Succursalemembre succMembre = succursalemembreFacadeREST.find(succursaleId);
             double nbrArgent = succMembre.getTauxRemise() * cost;
             int nbrPts = (int) nbrArgent * 100;
-            addPoints(clientId, nbrPts);
+            addPoints(numeroClient, nbrPts);
             return nbrPts;
         }
         return 0;
