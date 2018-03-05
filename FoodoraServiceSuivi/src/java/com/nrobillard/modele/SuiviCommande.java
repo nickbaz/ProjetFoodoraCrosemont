@@ -19,6 +19,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.hibernate.validator.constraints.Length;
 
 /**
  *
@@ -45,17 +46,20 @@ public class SuiviCommande implements Serializable
     @Column(name = "Numero")
     private Integer numero;
     @Column(name = "Status", length = 100)
+    @Basic(optional = false)
+    @Length(min = 1, max = 100)
     private String status;
     @Basic(optional = false)
+    @Length(min = 1, max = 100)
     @Column(name = "Emplacement", length = 100)
     private String emplacement;
     @Basic(optional = false)
-    //@NotNull
+    @NotNull
     @Column(name = "DateCommande")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCommande;
     @Basic(optional = false)
-    //@NotNull
+    @NotNull
     @Column(name = "DateComplet")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateComplet;
