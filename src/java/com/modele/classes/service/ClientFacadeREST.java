@@ -27,7 +27,7 @@ import javax.ws.rs.core.MediaType;
  * @author utilisateur
  */
 @Stateless
-@Path("com.modele.classes.client")
+@Path("com.programmeFidelite.client")
 public class ClientFacadeREST extends AbstractFacade<Client> {
 
     @EJB
@@ -91,16 +91,12 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
-    }
+    }    
     
-    private void addPoints(Integer clientId, int nbrPts) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @GET
     @Path("makeTransaction/{costBeforeTaxes}/{succursaleId}/{clientId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public int makeTransaction(@PathParam("costBeforeTaxes") Double cost, @PathParam("succursale") Integer succursaleId, @PathParam("clientId") Integer clientId) {
+    public int makeTransaction(@PathParam("costBeforeTaxes") Double cost, @PathParam("succursale") Integer succursaleId, @PathParam("clientId") String clientId) {
         if (succursalemembreFacadeREST.isSuccursaleMembre(succursaleId)) {
             Succursalemembre succMembre = succursalemembreFacadeREST.find(succursaleId);
             double nbrArgent = succMembre.getTauxRemise() * cost;
@@ -109,5 +105,45 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
             return nbrPts;
         }
         return 0;
+    }
+    
+    @GET
+    @Path("getSoldePoints/{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public int getSoldePoints(@PathParam("id") String id){
+        Client c = this.find(id);
+        return c.getSoldePoints();
+    }
+    
+    @GET
+    @Path("getSoldeArgent/{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public double getSoldeArgent(@PathParam("id") String id){
+        Client c = this.find(id);
+        return c.getSoldeArgent();
+    }
+    
+    @GET
+    @Path("addPoints/{id}/{pts}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public void addPoints(@PathParam("id") String id, @PathParam("pts") int pts){
+        Client c = this.find(id);
+        int ancienSoldePts = c.getSoldePoints();
+        int nouveauSoldePts = ancienSoldePts+pts;        
+        c.setSoldePoints(nouveauSoldePts);
+        c.setSoldeArgent(nouveauSoldePts/100);
+        this.edit(id, c);
+    }
+    
+    @GET
+    @Path("usePoints/{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public double usePoints(@PathParam("id") String id){
+        Client c = this.find(id);
+        double soldeArgent = c.getSoldeArgent();
+        c.setSoldePoints(0);
+        c.setSoldeArgent(0.00);
+        this.edit(id, c);
+        return soldeArgent;
     }
 }
