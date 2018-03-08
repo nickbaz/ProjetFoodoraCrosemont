@@ -5,13 +5,17 @@
  */
 package com.modele.classes.service;
 
+import com.foodoraCrosemont.Utils.ClientSuccursalemembreBuilder;
 import com.modele.classes.Client;
+import com.modele.classes.ClientSuccursalemembre;
 import com.modele.classes.Succursalemembre;
 import java.util.List;
+import java.util.Objects;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -24,15 +28,18 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author utilisateur
+ * @author Nicolas
  */
 @Stateless
-@Path("com.programmeFidelite.client")
+@Path("com.modele.classes.client")
 public class ClientFacadeREST extends AbstractFacade<Client> {
 
     @EJB
     private SuccursalemembreFacadeREST succursalemembreFacadeREST;
-
+    
+    @EJB
+    private ClientSuccursalemembreFacadeREST clientSuccursalemembreFacadeREST;
+    
     @PersistenceContext(unitName = "ProgrammeFidelitePU")
     private EntityManager em;
 
@@ -94,57 +101,98 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
     }    
     
     @GET
-    @Path("makeTransaction/{costBeforeTaxes}/{succursaleId}/{numeroClient}")
+    @Path("makeTransaction/{costBeforeTaxes}/{numeroClient}/{succursaleId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String makeTransaction(@PathParam("costBeforeTaxes") Double cost, @PathParam("succursale") Integer succursaleId, @PathParam("numeroClient") String numeroClient) {
-        if (succursalemembreFacadeREST.isSuccursaleMembre(succursaleId)) {
-            Succursalemembre succMembre = succursalemembreFacadeREST.find(succursaleId);
-            double nbrArgent = succMembre.getTauxRemise() * cost;
+    public String makeTransaction(@PathParam("costBeforeTaxes") Double cost, @PathParam("succursaleId") Integer idSuccursale, @PathParam("numeroClient") String numeroClient) {
+
+        ClientSuccursalemembre csm = ClientSuccursalemembreBuilder.BuildClientSuccursalemembre(numeroClient, idSuccursale);
+        if(Objects.isNull(csm))
+            return "";
+        csm = FindClientSuccursalemembreByForeignKey(csm);
+        if(Objects.nonNull(csm)){
+            double nbrArgent = csm.getIdSuccursale().getTauxRemise() * cost;
             int nbrPts = (int) nbrArgent * 100;
-            addPoints(numeroClient, nbrPts);
-            return "[{\"soldePoints\" : "+nbrPts+"}]";
+            //addPoints(numeroClient, idSuccursale, nbrPts);
+         
+            int ancienSoldePts = csm.getSoldePointsclient();
+            int nouveauSoldePts = ancienSoldePts+nbrPts;  
+
+            csm.setSoldePointsclient(nouveauSoldePts);
+            csm.setSoldeArgentclient(nouveauSoldePts/100);
+            clientSuccursalemembreFacadeREST.edit(csm);
+            return("[{\"soldeArgent\" : "+nouveauSoldePts+"}]");
+
         }
+
         return "";
     }
     
     @GET
-    @Path("getSoldePoints/{id}")
+    @Path("getSoldePoints/{numeroClient}/{idSuccursale}")
     @Produces({MediaType.APPLICATION_JSON})
-    public String getSoldePoints(@PathParam("id") String id){
-        Client c = this.find(id);                   
-        return "[{\"soldePoints\" : "+c.getSoldePoints()+"}]";
-    }
-    
-    @GET
-    @Path("getSoldeArgent/{id}")
-    @Produces({MediaType.APPLICATION_JSON})
-    public String getSoldeArgent(@PathParam("id") String id){
-        Client c = this.find(id);
-        return "[{\"soldeArgent\" : "+c.getSoldeArgent()+"}]";        
+    public String getSoldePoints(@PathParam("numeroClient") String numeroClient, @PathParam("idSuccursale") Integer idSuccursale){
         
-    }
-    
-    @POST
-    @Path("addPoints/{id}/{pts}")
-    @Produces({MediaType.APPLICATION_JSON})
-    public void addPoints(@PathParam("id") String id, @PathParam("pts") int pts){
-        Client c = this.find(id);
-        int ancienSoldePts = c.getSoldePoints();
-        int nouveauSoldePts = ancienSoldePts+pts;        
-        c.setSoldePoints(nouveauSoldePts);
-        c.setSoldeArgent(nouveauSoldePts/100);
-        this.edit(id, c);
+        ClientSuccursalemembre csm = ClientSuccursalemembreBuilder.BuildClientSuccursalemembre(numeroClient, idSuccursale);
+        csm = FindClientSuccursalemembreByForeignKey(csm);
+        
+        if(Objects.nonNull(csm))
+            return "[{\"soldePoints\" : "+csm.getSoldePointsclient()+"}]";
+        else
+            return "";
     }
     
     @GET
-    @Path("usePoints/{id}")
+    @Path("getSoldeArgent/{numeroClient}/{idSuccursale}")
     @Produces({MediaType.APPLICATION_JSON})
-    public String usePoints(@PathParam("id") String id){
-        Client c = this.find(id);
-        double soldeArgent = c.getSoldeArgent();
-        c.setSoldePoints(0);
-        c.setSoldeArgent(0.00);
-        this.edit(id, c);
+    public String getSoldeArgent(@PathParam("numeroClient") String numeroClient, @PathParam("idSuccursale") Integer idSuccursale){
+        
+        ClientSuccursalemembre csm = ClientSuccursalemembreBuilder.BuildClientSuccursalemembre(numeroClient, idSuccursale);
+        csm = FindClientSuccursalemembreByForeignKey(csm);
+        
+        if(Objects.nonNull(csm))
+            return "[{\"soldeArgent\" : "+csm.getSoldeArgentclient()+"}]";        
+        else
+            return "";
+    }
+    
+    @GET
+    @Path("addPoints/{numeroClient}/{idSuccursale}/{pts}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String addPoints(@PathParam("numeroClient") String numeroClient, @PathParam("idSuccursale") Integer idSuccursale, @PathParam("pts") int pts){
+        ClientSuccursalemembre csm = ClientSuccursalemembreBuilder.BuildClientSuccursalemembre(numeroClient, idSuccursale);
+        csm = FindClientSuccursalemembreByForeignKey(csm);
+
+        if(Objects.nonNull(csm)){            
+            int ancienSoldePts = csm.getSoldePointsclient();
+            int nouveauSoldePts = ancienSoldePts+pts;  
+
+            csm.setSoldePointsclient(nouveauSoldePts);
+            csm.setSoldeArgentclient(nouveauSoldePts/100);
+            clientSuccursalemembreFacadeREST.edit(csm);
+            return("[{\"soldeArgent\" : "+nouveauSoldePts+"}]");
+        }
+        return("");
+    }
+    
+    @GET
+    @Path("usePoints/{numeroClient}/{idSuccursale}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String usePoints(@PathParam("numeroClient") String numeroClient, @PathParam("idSuccursale") Integer idSuccursale){
+        ClientSuccursalemembre csm = ClientSuccursalemembreBuilder.BuildClientSuccursalemembre(numeroClient, idSuccursale);
+        csm = FindClientSuccursalemembreByForeignKey(csm);
+        
+        double soldeArgent = csm.getSoldeArgentclient();
+        csm.setSoldePointsclient(0);
+        csm.setSoldeArgentclient(0.00);
+        clientSuccursalemembreFacadeREST.edit(csm);
+        
         return "[{\"soldeArgent\" : "+soldeArgent+"}]";
+    }
+    
+    public ClientSuccursalemembre FindClientSuccursalemembreByForeignKey(ClientSuccursalemembre csm){
+        TypedQuery<ClientSuccursalemembre> query = em.createNamedQuery("ClientSuccursalemembre.findByForeignKey",ClientSuccursalemembre.class);
+        query.setParameter("numeroClient", csm.getNumeroClient());
+        query.setParameter("idSuccursale", csm.getIdSuccursale());
+        return query.getSingleResult();
     }
 }

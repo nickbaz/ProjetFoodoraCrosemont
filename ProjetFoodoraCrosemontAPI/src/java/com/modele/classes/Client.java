@@ -7,11 +7,13 @@ package com.modele.classes;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -19,16 +21,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author utilisateur
+ * @author Nicolas
  */
 @Entity
 @Table(name = "client")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c")
-    , @NamedQuery(name = "Client.findByNumero", query = "SELECT c FROM Client c WHERE c.numero = :numero")
-    , @NamedQuery(name = "Client.findBySoldePoints", query = "SELECT c FROM Client c WHERE c.soldePoints = :soldePoints")
-    , @NamedQuery(name = "Client.findBySoldeArgent", query = "SELECT c FROM Client c WHERE c.soldeArgent = :soldeArgent")})
+    , @NamedQuery(name = "Client.findByNumero", query = "SELECT c FROM Client c WHERE c.numero = :numero")})
 public class Client implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,14 +38,9 @@ public class Client implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "numero")
     private String numero;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "soldePoints")
-    private int soldePoints;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "soldeArgent")
-    private double soldeArgent;
+    
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "numeroClient")
+    private ClientSuccursalemembre clientSuccursalemembre;
 
     public Client() {
     }
@@ -56,8 +51,7 @@ public class Client implements Serializable {
 
     public Client(String numero, int soldePoints, double soldeArgent) {
         this.numero = numero;
-        this.soldePoints = soldePoints;
-        this.soldeArgent = soldeArgent;
+
     }
 
     public String getNumero() {
@@ -68,20 +62,12 @@ public class Client implements Serializable {
         this.numero = numero;
     }
 
-    public int getSoldePoints() {
-        return soldePoints;
+    public ClientSuccursalemembre getClientSuccursalemembre() {
+        return clientSuccursalemembre;
     }
 
-    public void setSoldePoints(int soldePoints) {
-        this.soldePoints = soldePoints;
-    }
-
-    public double getSoldeArgent() {
-        return soldeArgent;
-    }
-
-    public void setSoldeArgent(double soldeArgent) {
-        this.soldeArgent = soldeArgent;
+    public void setClientSuccursalemembre(ClientSuccursalemembre clientSuccursalemembre) {
+        this.clientSuccursalemembre = clientSuccursalemembre;
     }
 
     @Override

@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.modele.classes.service.ClientFacadeREST.class);
+        resources.add(com.modele.classes.service.ClientSuccursalemembreFacadeREST.class);
         resources.add(com.modele.classes.service.SuccursalemembreFacadeREST.class);
     }
     

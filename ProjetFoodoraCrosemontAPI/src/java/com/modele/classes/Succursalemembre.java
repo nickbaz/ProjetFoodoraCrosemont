@@ -7,6 +7,7 @@ package com.modele.classes;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -21,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author utilisateur
+ * @author Nicolas
  */
 @Entity
 @Table(name = "succursalemembre")
@@ -48,6 +50,8 @@ public class Succursalemembre implements Serializable {
     @NotNull
     @Column(name = "tauxRemise")
     private double tauxRemise;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idSuccursale")
+    private ClientSuccursalemembre clientSuccursalemembre;
 
     public Succursalemembre() {
     }
@@ -84,6 +88,14 @@ public class Succursalemembre implements Serializable {
 
     public void setTauxRemise(double tauxRemise) {
         this.tauxRemise = tauxRemise;
+    }
+
+    public ClientSuccursalemembre getClientSuccursalemembre() {
+        return clientSuccursalemembre;
+    }
+
+    public void setClientSuccursalemembre(ClientSuccursalemembre clientSuccursalemembre) {
+        this.clientSuccursalemembre = clientSuccursalemembre;
     }
 
     @Override
