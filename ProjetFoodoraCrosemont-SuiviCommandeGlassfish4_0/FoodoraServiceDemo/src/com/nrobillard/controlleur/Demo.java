@@ -17,12 +17,12 @@ public class Demo
         System.out.println(ListeSuivi.toString());
         
         System.out.println("suivi de la commande 12345678 : ");
-        JSONObject suivi = FoodoraSuiviWebRequests.GetSuiviCommandeByNum().getBody().getObject();
+        JSONObject suivi = FoodoraSuiviWebRequests.GetSuiviCommandeByNum("12345678").getBody().getObject();
         System.out.println(suivi.toString());
         
         //fonctionne
         System.out.println("creation de la commande 222222 ");
-        System.out.println(FoodoraSuiviWebRequests.PostCreateSuiviCommande());
+        System.out.println(FoodoraSuiviWebRequests.PostCreateSuiviCommande("{\"emplacement\":\"42.714224,-63.961452\",\"numero\":222222,\"dateCommande\":\"2018-02-19T08:18:37\",\"dateComplet\":\"2018-02-20T02:19:29\",\"status\":\"En cours\"}"));
         
         //fonctionne
         System.out.println("Count de suivi de commande : ");
@@ -30,7 +30,7 @@ public class Demo
         
         //fonctionne
         System.out.println("Delete du suivi de commande numero 222222 : ");
-        System.out.println(FoodoraSuiviWebRequests.DeleteSuiviCommande().getBody());
+        System.out.println(FoodoraSuiviWebRequests.DeleteSuiviCommande("222222").getBody());
     }
     
 }

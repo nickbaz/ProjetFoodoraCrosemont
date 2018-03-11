@@ -17,12 +17,12 @@ import org.json.JSONObject;
  */
 public class FoodoraSuiviWebRequests
 {
-    public static HttpResponse<JsonNode> GetSuiviCommandeByNum() {
+    public static HttpResponse<JsonNode> GetSuiviCommandeByNum(String id) {
         HttpResponse<JsonNode> response = null;
         try 
         {
             response =  
-                Unirest.get("http://localhost:8080/FoodoraServiceSuivi/webresources/suivi/12345678")
+                Unirest.get("http://localhost:8080/FoodoraServiceSuivi/webresources/suivi/".concat(id))
                 .header("accept", "application/json")
                 .asJson();
         } 
@@ -49,22 +49,20 @@ public class FoodoraSuiviWebRequests
         }
         return response;
     }
-     public static HttpResponse<JsonNode> PostCreateSuiviCommande(){
-                 HttpResponse<JsonNode> response = null;
+     public static HttpResponse<JsonNode> PostCreateSuiviCommande(String entity){
+                 
+         HttpResponse<JsonNode> response = null;
                  JSONObject newSuivi;
         try {
-            newSuivi = new JSONObject("{\"emplacement\":\"42.714224,-63.961452\",\"numero\":222222,\"dateCommande\":\"2018-02-19T08:18:37\",\"dateComplet\":\"2018-02-20T02:19:29\",\"status\":\"En cours\"}");
+            newSuivi = new JSONObject(entity);
             Unirest.post("http://localhost:8080/FoodoraServiceSuivi/webresources/suivi/")
                     .header("Content-Type", "application/json")
                     .header("accept", "application/json")
                     .body(newSuivi).asJson();
-            } catch (JSONException ex) {
+            } catch (JSONException | UnirestException ex) {
             System.out.println("La requête a déclenché une exception.");
             System.out.println("Message: " + ex.getMessage());
             
-        } catch (UnirestException ex) {
-            System.out.println("La requête a déclenché une exception.");
-            System.out.println("Message: " + ex.getMessage());
         }
         return response;
      }
@@ -86,12 +84,12 @@ public class FoodoraSuiviWebRequests
         return response;
     }
      
-     public static HttpResponse<String> DeleteSuiviCommande() {
+     public static HttpResponse<String> DeleteSuiviCommande(String id) {
         HttpResponse<String> response = null;
         try 
         {
             response =
-                    Unirest.delete("http://localhost:8080/FoodoraServiceSuivi/webresources/suivi/222222")
+                    Unirest.delete("http://localhost:8080/FoodoraServiceSuivi/webresources/suivi/".concat(id))
                             .header("Content-Type", "text/html").asString();
         } 
         catch (UnirestException uex) 
