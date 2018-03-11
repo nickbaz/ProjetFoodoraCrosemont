@@ -31,26 +31,36 @@ public class ApplicationTest {
         Client client1 = new Client();
         client1.setNumero(jsonObject.getString("numero"));
         
+        //Test Find
         System.out.println("Supposé être : CT12345 | Est en réalité : " + client1.getNumero());
+        
+        //Test getSoldeArgent
+        c1.usePoints("CT12345", "5");
+        jsonObject = (Json.createReader(new StringReader(c1.getSoldeArgent("CT12345", "5")))).readObject();
+        System.out.println("Supposé être : 0.0 | Est en réalité : "+jsonObject.getString("soldeArgent"));        
+        
         
         //Test Succursalemembre
         CustomerSuccursalemembre sm = new CustomerSuccursalemembre();
         String smJson = sm.findSuccursalemembre("5");
         reader = Json.createReader(new StringReader(smJson));
         jsonObject = reader.readObject();
-        Succursalemembre succMembre = new Succursalemembre();
-        succMembre.setId(jsonObject.getInt("id"));
-        succMembre.setNom(jsonObject.getString("nom"));
-        succMembre.setTauxRemise(Double.parseDouble(jsonObject.getString("tauxRemise")));
-        
-        System.out.println("Supposé être : 5, Canadian Tire, 0.01 | Est en réalité : "+succMembre.getId()+", "
-                + ""+succMembre.getClientSuccursalemembre().getIdSuccursale().getNom()+", "+succMembre.getTauxRemise());
-
-        jsonObject = (Json.createReader(new StringReader(sm.isSuccursaleMembre("7")))).readObject();
-        System.out.println("Supposé être : true | Est en réalité : "+jsonObject.getBoolean("isMembre"));
-        
-        jsonObject = (Json.createReader(new StringReader(sm.getTauxRemise("6")))).readObject();
-        System.out.println("Supposé être : 0.02 | Est en réalité : "+Double.parseDouble(jsonObject.getString("tauxRemise")));
+//        Succursalemembre succMembre = new Succursalemembre();
+//        succMembre.setId(jsonObject.getInt("id"));
+//        succMembre.setNom(jsonObject.getString("nom"));
+//        succMembre.setTauxRemise(Double.parseDouble(jsonObject.getString("tauxRemise")));
+//        
+//        //Test find
+//        System.out.println("Supposé être : 5, Canadian Tire, 0.01 | Est en réalité : "+succMembre.getId()+", "
+//                + ""+succMembre.getClientSuccursalemembre().getIdSuccursale().getNom()+", "+succMembre.getTauxRemise());
+//
+//        //Test isSuccursaleMembre
+//        jsonObject = (Json.createReader(new StringReader(sm.isSuccursaleMembre("7")))).readObject();
+//        System.out.println("Supposé être : true | Est en réalité : "+jsonObject.getBoolean("isMembre"));
+//        
+//        //Test getTauxRemise
+//        jsonObject = (Json.createReader(new StringReader(sm.getTauxRemise("6")))).readObject();
+//        System.out.println("Supposé être : 0.02 | Est en réalité : "+Double.parseDouble(jsonObject.getString("tauxRemise")));
 
     }
     

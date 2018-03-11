@@ -63,7 +63,7 @@ public class SuccursalemembreFacadeREST extends AbstractFacade<Succursalemembre>
     public String findSuccursalemembre(@PathParam("id") Integer id) {
         Succursalemembre succMembre = super.find(id);
         
-        return "[{\"id\" : "+succMembre.getId()+",\"nom\" : "+succMembre.getNom()+",\"tauxRemise\" : "+succMembre.getTauxRemise()+"}]";
+        return "[{\"id\" : \""+succMembre.getId()+"\",\"nom\" : \""+succMembre.getNom()+"\",\"tauxRemise\" : \""+succMembre.getTauxRemise()+"\"}]";
     }
 
     @GET
@@ -73,7 +73,7 @@ public class SuccursalemembreFacadeREST extends AbstractFacade<Succursalemembre>
         StringBuilder json = new StringBuilder();
         json.append("[");
         for(Succursalemembre succMembre : super.findAll()){
-            json.append("{\"id\" : "+succMembre.getId()+",\"nom\" : "+succMembre.getNom()+",\"tauxRemise\" : "+succMembre.getTauxRemise()+"},");
+            json.append("{\"id\" : \""+succMembre.getId()+"\",\"nom\" : \""+succMembre.getNom()+"\",\"tauxRemise\" : \""+succMembre.getTauxRemise()+"\"},");
         }
         json.deleteCharAt(json.length()-1);
         json.append("]");
@@ -108,7 +108,7 @@ public class SuccursalemembreFacadeREST extends AbstractFacade<Succursalemembre>
     @Produces(MediaType.APPLICATION_JSON)
     public String getTauxRemise(@PathParam("id") Integer id) {
         Succursalemembre succMembre = super.find(id);
-        return "[{\"tauxRemise\" : "+succMembre.getTauxRemise()+"}]";
+        return "[{\"tauxRemise\" : \""+succMembre.getTauxRemise()+"\"}]";
     }
     
 }

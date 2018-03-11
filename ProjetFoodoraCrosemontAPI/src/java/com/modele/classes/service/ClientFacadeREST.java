@@ -71,7 +71,7 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
     @Produces({MediaType.APPLICATION_JSON})
     public String findClient(@PathParam("id") String id) {
         Client client = super.find(id);
-        return "[{\"numero\" : "+client.getNumero()+"}]";
+        return "{\"numero\" : \""+client.getNumero()+"\"}";
 
     }
 
@@ -82,7 +82,7 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
         StringBuilder json = new StringBuilder();
         json.append("[");
         for(Client client : super.findAll()){
-            json.append("{\"numero\" : "+client.getNumero()+"},");
+            json.append("{\"numero\" : \""+client.getNumero()+"\"},");
         }
         json.deleteCharAt(json.length()-1);
         json.append("]");
@@ -120,7 +120,7 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
             csm.setSoldePointsclient(nouveauSoldePts);
             csm.setSoldeArgentclient(nouveauSoldePts/100);
             clientSuccursalemembreFacadeREST.edit(csm);
-            return("[{\"soldeArgent\" : "+nouveauSoldePts+"}]");
+            return("[{\"soldeArgent\" : \""+nouveauSoldePts+"\"}]");
 
         }
 
@@ -136,7 +136,7 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
         csm = FindClientSuccursalemembreByForeignKey(csm);
         
         if(Objects.nonNull(csm))
-            return "[{\"soldePoints\" : "+csm.getSoldePointsclient()+"}]";
+            return "[{\"soldePoints\" : \""+csm.getSoldePointsclient()+"\"}]";
         else
             return "";
     }
@@ -150,7 +150,7 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
         csm = FindClientSuccursalemembreByForeignKey(csm);
         
         if(Objects.nonNull(csm))
-            return "[{\"soldeArgent\" : "+csm.getSoldeArgentclient()+"}]";        
+            return "{\"soldeArgent\" : \""+csm.getSoldeArgentclient()+"\"}";        
         else
             return "";
     }
@@ -169,7 +169,7 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
             csm.setSoldePointsclient(nouveauSoldePts);
             csm.setSoldeArgentclient(nouveauSoldePts/100);
             clientSuccursalemembreFacadeREST.edit(csm);
-            return("[{\"soldePoints\" : "+nouveauSoldePts+"}]");
+            return("[{\"soldePoints\" : \""+nouveauSoldePts+"\"}]");
         }
         return("");
     }
@@ -186,7 +186,7 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
         csm.setSoldeArgentclient(0.00);
         clientSuccursalemembreFacadeREST.edit(csm);
         
-        return "[{\"soldeArgent\" : "+soldeArgent+"}]";
+        return "[{\"soldeArgent\" : \""+soldeArgent+"\"}]";
     }
     
     public ClientSuccursalemembre FindClientSuccursalemembreByForeignKey(ClientSuccursalemembre csm){
