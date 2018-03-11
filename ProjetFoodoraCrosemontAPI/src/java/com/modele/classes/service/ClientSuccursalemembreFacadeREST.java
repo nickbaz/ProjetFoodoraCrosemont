@@ -8,7 +8,6 @@ package com.modele.classes.service;
 import com.foodoraCrosemont.Utils.ClientSuccursalemembreBuilder;
 import com.modele.classes.Client;
 import com.modele.classes.ClientSuccursalemembre;
-import com.modele.classes.Succursalemembre;
 import java.util.List;
 import java.util.Objects;
 import javax.ejb.EJB;
@@ -67,24 +66,31 @@ public class ClientSuccursalemembreFacadeREST extends AbstractFacade<ClientSuccu
     }
 
     @GET
-    @Path("{id}")
+    @Path("find/{numeroClient}/{idSuccursale}")
     @Produces({MediaType.APPLICATION_JSON})
-    public ClientSuccursalemembre find(@PathParam("id") Integer id) {
-        return super.find(id);
+    public String findClientSuccursalemembre(@PathParam("numeroClient") String numeroClient, @PathParam("idSuccursale") Integer idSuccursale) {
+        ClientSuccursalemembre csm = ClientSuccursalemembreBuilder.BuildClientSuccursalemembre(numeroClient, idSuccursale);
+        csm = clientFacadeREST.FindClientSuccursalemembreByForeignKey(csm);
+        
+        return "[{\"id\" : "+csm.getId()+", \"numero_client\" : "+csm.getNumeroClient().getNumero()+", \"id_succursale\" : "
+                + csm.getIdSuccursale().getId()+", \"soldeArgent_client\" : "+csm.getSoldeArgentclient()+", \"soldePoints_client\" : "
+                + csm.getSoldePointsclient()+"}]";
     }
 
     @GET
-    @Override
+    @Path("findAllClientSuccursale")
     @Produces({MediaType.APPLICATION_JSON})
-    public List<ClientSuccursalemembre> findAll() {
-        return super.findAll();
-    }
-
-    @GET
-    @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_JSON})
-    public List<ClientSuccursalemembre> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-        return super.findRange(new int[]{from, to});
+    public String findAllClientSuccursale() {
+        StringBuilder json = new StringBuilder();
+        json.append("[");
+        for(ClientSuccursalemembre csm : super.findAll()){
+            json.append("{\"id\" : "+csm.getId()+", \"numero_client\" : "+csm.getNumeroClient().getNumero()+", \"id_succursale\" : "
+                + csm.getIdSuccursale().getId()+", \"soldeArgent_client\" : "+csm.getSoldeArgentclient()+", \"soldePoints_client\" : "
+                + csm.getSoldePointsclient()+"},");
+        }
+        json.deleteCharAt(json.length()-1);
+        json.append("]");
+        return json.toString();        
     }
 
     @GET

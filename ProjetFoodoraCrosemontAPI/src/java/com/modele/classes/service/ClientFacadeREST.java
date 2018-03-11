@@ -8,8 +8,6 @@ package com.modele.classes.service;
 import com.foodoraCrosemont.Utils.ClientSuccursalemembreBuilder;
 import com.modele.classes.Client;
 import com.modele.classes.ClientSuccursalemembre;
-import com.modele.classes.Succursalemembre;
-import java.util.List;
 import java.util.Objects;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -25,6 +23,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
 
 /**
  *
@@ -68,24 +67,26 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
     }
 
     @GET
-    @Path("{id}")
+    @Path("getClient/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Client find(@PathParam("id") String id) {
-        return super.find(id);
+    public String findClient(@PathParam("id") String id) {
+        Client client = super.find(id);
+        return "[{\"numero\" : "+client.getNumero()+"}]";
+
     }
 
     @GET
-    @Override
+    @Path("getAllClient")
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Client> findAll() {
-        return super.findAll();
-    }
-
-    @GET
-    @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_JSON})
-    public List<Client> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-        return super.findRange(new int[]{from, to});
+    public String findAllClient() { 
+        StringBuilder json = new StringBuilder();
+        json.append("[");
+        for(Client client : super.findAll()){
+            json.append("{\"numero\" : "+client.getNumero()+"},");
+        }
+        json.deleteCharAt(json.length()-1);
+        json.append("]");
+        return json.toString();
     }
 
     @GET
@@ -110,9 +111,8 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
             return "";
         csm = FindClientSuccursalemembreByForeignKey(csm);
         if(Objects.nonNull(csm)){
-            double nbrArgent = csm.getIdSuccursale().getTauxRemise() * cost;
-            int nbrPts = (int) nbrArgent * 100;
-            //addPoints(numeroClient, idSuccursale, nbrPts);
+            double nbrArgent = (csm.getIdSuccursale().getTauxRemise()*100) * cost;
+            int nbrPts = (int) nbrArgent;
          
             int ancienSoldePts = csm.getSoldePointsclient();
             int nouveauSoldePts = ancienSoldePts+nbrPts;  
@@ -169,7 +169,7 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
             csm.setSoldePointsclient(nouveauSoldePts);
             csm.setSoldeArgentclient(nouveauSoldePts/100);
             clientSuccursalemembreFacadeREST.edit(csm);
-            return("[{\"soldeArgent\" : "+nouveauSoldePts+"}]");
+            return("[{\"soldePoints\" : "+nouveauSoldePts+"}]");
         }
         return("");
     }

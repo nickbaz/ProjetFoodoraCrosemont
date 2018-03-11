@@ -5,6 +5,7 @@
  */
 package com.modele.classes.service;
 
+import com.modele.classes.Client;
 import com.modele.classes.Succursalemembre;
 import java.util.List;
 import java.util.Objects;
@@ -59,22 +60,24 @@ public class SuccursalemembreFacadeREST extends AbstractFacade<Succursalemembre>
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Succursalemembre find(@PathParam("id") Integer id) {
-        return super.find(id);
+    public String findSuccursalemembre(@PathParam("id") Integer id) {
+        Succursalemembre succMembre = super.find(id);
+        
+        return "[{\"id\" : "+succMembre.getId()+",\"nom\" : "+succMembre.getNom()+",\"tauxRemise\" : "+succMembre.getTauxRemise()+"}]";
     }
 
     @GET
-    @Override
+    @Path("getAllSuccursalemembre")
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Succursalemembre> findAll() {
-        return super.findAll();
-    }
-
-    @GET
-    @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_JSON})
-    public List<Succursalemembre> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-        return super.findRange(new int[]{from, to});
+    public String findAllSuccursalemembre() {
+        StringBuilder json = new StringBuilder();
+        json.append("[");
+        for(Succursalemembre succMembre : super.findAll()){
+            json.append("{\"id\" : "+succMembre.getId()+",\"nom\" : "+succMembre.getNom()+",\"tauxRemise\" : "+succMembre.getTauxRemise()+"},");
+        }
+        json.deleteCharAt(json.length()-1);
+        json.append("]");
+        return json.toString();
     }
 
     @GET
