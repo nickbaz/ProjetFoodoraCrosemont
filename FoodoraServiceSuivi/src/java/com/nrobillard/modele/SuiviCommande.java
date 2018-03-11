@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//Classe entité basée sur la table suivi_commande
 package com.nrobillard.modele;
 
 import java.io.Serializable;
@@ -21,10 +17,7 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.validator.constraints.Length;
 
-/**
- *
- * @author Vengor
- */
+
 @Entity
 @Table(name = "suivi_commande")
 @XmlRootElement
@@ -143,7 +136,6 @@ public class SuiviCommande implements Serializable
     @Override
     public boolean equals(Object object)
     {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof SuiviCommande))
         {
             return false;
@@ -159,7 +151,11 @@ public class SuiviCommande implements Serializable
     @Override
     public String toString()
     {
-        return "com.nrobillard.modele.SuiviCommande[ numero=" + numero + " ]";
+        return "Numero: " + numero +
+                "\nStatus: " + status +
+                "\nEmplacement: " + emplacement +
+                "\nDate de commande: " + dateCommande +
+                "\nDate de fin: " + dateComplet;
     }
     
 }

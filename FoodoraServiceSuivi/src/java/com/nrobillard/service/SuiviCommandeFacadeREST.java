@@ -1,8 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//Classes qui fournit les services web REST
+//Implémente la classe générique abstraite d'accès aux données AbstractFacade
+
 package com.nrobillard.service;
 
 import com.nrobillard.modele.SuiviCommande;
@@ -20,10 +18,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-/**
- *
- * @author Vengor
- */
 @Stateless
 @Path("suivi")
 public class SuiviCommandeFacadeREST extends AbstractFacade<SuiviCommande>
@@ -81,7 +75,7 @@ public class SuiviCommandeFacadeREST extends AbstractFacade<SuiviCommande>
     @Override
     @Produces(
     {
-        /*MediaType.APPLICATION_XML,*/ MediaType.APPLICATION_JSON
+        MediaType.APPLICATION_JSON
     })
     public List<SuiviCommande> findAll()
     {
