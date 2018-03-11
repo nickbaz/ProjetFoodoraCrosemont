@@ -41,6 +41,18 @@ public class Demo
         //Une modification invalide retournera une status 400 ou 500
         System.out.println("Résultat de la modification: ");
         System.out.println(ResultatModif.getStatus() + " : " + ResultatModif.getStatusText());
+        
+        System.out.println("\nCreation de la commande 222222");
+        FoodoraSuiviWebRequests.PostCreateSuiviCommande("{\"emplacement\":\"42.714224,-63.961452\",\"numero\":222222,\"dateCommande\":\"2018-02-19T08:18:37\",\"dateComplet\":\"2018-02-20T02:19:29\",\"status\":\"En cours\"}");
+        
+        System.out.println("\nCount de suivi de commande après création: ");
+        System.out.println("Résultat: " + FoodoraSuiviWebRequests.GetCountSuiviCommande().getBody());
+        
+        System.out.println("\nDelete du suivi de commande numero 222222");
+        FoodoraSuiviWebRequests.DeleteSuiviCommande("222222").getStatus();
+        
+        System.out.println("\nCount de suivi de commande après la suppression: ");
+        System.out.println(FoodoraSuiviWebRequests.GetCountSuiviCommande().getBody());
     }
     
 } 
