@@ -72,9 +72,9 @@ public class ClientSuccursalemembreFacadeREST extends AbstractFacade<ClientSuccu
         ClientSuccursalemembre csm = ClientSuccursalemembreBuilder.BuildClientSuccursalemembre(numeroClient, idSuccursale);
         csm = clientFacadeREST.FindClientSuccursalemembreByForeignKey(csm);
         
-        return "{\"id\" : \""+csm.getId()+"\", \"numero_client\" : \""+csm.getNumeroClient().getNumero()+"\", \"id_succursale\" : \""
-                + csm.getIdSuccursale().getId()+"\", \"soldeArgent_client\" : \""+csm.getSoldeArgentclient()+"\", \"soldePoints_client\" : \""
-                + csm.getSoldePointsclient()+"\"}";
+        return "{\"id\" : "+csm.getId()+", \"numero_client\" : \""+csm.getNumeroClient().getNumero()+"\", \"id_succursale\" : "
+                + csm.getIdSuccursale().getId()+", \"soldeArgent_client\" : "+csm.getSoldeArgentclient()+", \"soldePoints_client\" : "
+                + csm.getSoldePointsclient()+"}";
     }
 
     @GET
@@ -84,9 +84,9 @@ public class ClientSuccursalemembreFacadeREST extends AbstractFacade<ClientSuccu
         StringBuilder json = new StringBuilder();
         json.append("[");
         for(ClientSuccursalemembre csm : super.findAll()){
-            json.append("{\"id\" : \""+csm.getId()+"\", \"numero_client\" : \""+csm.getNumeroClient().getNumero()+"\", \"id_succursale\" : \""
-                + csm.getIdSuccursale().getId()+"\", \"soldeArgent_client\" : \""+csm.getSoldeArgentclient()+"\", \"soldePoints_client\" : \""
-                + csm.getSoldePointsclient()+"\"},");
+            json.append("{\"id\" : "+csm.getId()+", \"numero_client\" : \""+csm.getNumeroClient().getNumero()+"\", \"id_succursale\" : "
+                + csm.getIdSuccursale().getId()+", \"soldeArgent_client\" : "+csm.getSoldeArgentclient()+", \"soldePoints_client\" : "
+                + csm.getSoldePointsclient()+"},");
         }
         json.deleteCharAt(json.length()-1);
         json.append("]");
@@ -109,7 +109,7 @@ public class ClientSuccursalemembreFacadeREST extends AbstractFacade<ClientSuccu
 
         csm = clientFacadeREST.FindClientSuccursalemembreByForeignKey(csm);
         if(Objects.nonNull(csm))
-            return "[{\"isClientMembre\" : true}]";
+            return "{\"isClientMembre\" : true}";
         else
         return "";
     }

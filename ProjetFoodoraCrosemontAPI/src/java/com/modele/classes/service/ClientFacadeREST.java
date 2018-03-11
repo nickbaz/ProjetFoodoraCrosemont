@@ -115,9 +115,9 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
             int nbrPts = (int) nbrArgent;
          
             int ancienSoldePts = csm.getSoldePointsclient();
-            int nouveauSoldePts = ancienSoldePts+nbrPts;  
+            double nouveauSoldePts = ancienSoldePts+nbrPts;  
 
-            csm.setSoldePointsclient(nouveauSoldePts);
+            csm.setSoldePointsclient((int)nouveauSoldePts);
             csm.setSoldeArgentclient(nouveauSoldePts/100);
             clientSuccursalemembreFacadeREST.edit(csm);
             return("[{\"soldeArgent\" : \""+nouveauSoldePts+"\"}]");
@@ -136,7 +136,7 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
         csm = FindClientSuccursalemembreByForeignKey(csm);
         
         if(Objects.nonNull(csm))
-            return "[{\"soldePoints\" : \""+csm.getSoldePointsclient()+"\"}]";
+            return "{\"soldePoints\" : \""+csm.getSoldePointsclient()+"\"}";
         else
             return "";
     }
