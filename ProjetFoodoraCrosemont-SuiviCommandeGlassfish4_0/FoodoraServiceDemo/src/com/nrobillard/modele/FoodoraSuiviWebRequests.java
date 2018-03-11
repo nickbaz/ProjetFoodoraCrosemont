@@ -85,4 +85,20 @@ public class FoodoraSuiviWebRequests
         }
         return response;
     }
+     
+     public static HttpResponse<String> DeleteSuiviCommande() {
+        HttpResponse<String> response = null;
+        try 
+        {
+            response =
+                    Unirest.delete("http://localhost:8080/FoodoraServiceSuivi/webresources/suivi/222222")
+                            .header("Content-Type", "text/html").asString();
+        } 
+        catch (UnirestException uex) 
+        {
+            System.out.println("La requête a déclenché une exception.");
+            System.out.println("Message: " + uex.getMessage());
+        }
+        return response;
+    }
 }

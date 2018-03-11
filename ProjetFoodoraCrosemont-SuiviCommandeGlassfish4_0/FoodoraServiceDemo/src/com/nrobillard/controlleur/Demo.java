@@ -20,13 +20,17 @@ public class Demo
         JSONObject suivi = FoodoraSuiviWebRequests.GetSuiviCommandeByNum().getBody().getObject();
         System.out.println(suivi.toString());
         
-        //System.out.println("creation de la commande 222222 ");
-        //JSONObject creation = FoodoraSuiviWebRequests.PostCreateSuiviCommande().getBody().getObject();
-        //System.out.println(FoodoraSuiviWebRequests.PostCreateSuiviCommande());
+        //fonctionne
+        System.out.println("creation de la commande 222222 ");
+        System.out.println(FoodoraSuiviWebRequests.PostCreateSuiviCommande());
         
+        //fonctionne
         System.out.println("Count de suivi de commande : ");
-        //JSONObject compte = FoodoraSuiviWebRequests.GetCountSuiviCommande().getBody().getObject();
         System.out.println(FoodoraSuiviWebRequests.GetCountSuiviCommande().getBody());
+        
+        //fonctionne
+        System.out.println("Delete du suivi de commande numero 222222 : ");
+        System.out.println(FoodoraSuiviWebRequests.DeleteSuiviCommande().getBody());
     }
     
 }
