@@ -15,7 +15,7 @@ public class FoodoraSuiviWebRequests
         try 
         {
             response =  
-                Unirest.get("http://localhost:8080/FoodoraServiceSuivi/webresources/suivi/" + Id)
+                Unirest.get("http://localhost:8080/FoodoraServiceSuiviApache/webapi/com.nrobillard.foodoraservicesuiviapache.suivicommande/" + Id)
                 .header("accept", "application/json")
                 .asJson();
         } 
@@ -32,7 +32,7 @@ public class FoodoraSuiviWebRequests
         try 
         {
             response =
-                Unirest.get("http://localhost:8080/FoodoraServiceSuivi/webresources/suivi")
+                Unirest.get("http://localhost:8080/FoodoraServiceSuiviApache/webapi/com.nrobillard.foodoraservicesuiviapache.suivicommande")
                 .header("accept", "application/json")
                 .asJson();
         } 
@@ -50,7 +50,7 @@ public class FoodoraSuiviWebRequests
         {
             
             response =  
-                Unirest.put("http://localhost:8080/FoodoraServiceSuivi/webresources/suivi/" + Id)
+                Unirest.put("http://localhost:8080/FoodoraServiceSuiviApache/webapi/com.nrobillard.foodoraservicesuiviapache.suivicommande/" + Id)
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .body(NewSuivi)
@@ -68,11 +68,11 @@ public class FoodoraSuiviWebRequests
     
     public static HttpResponse<JsonNode> PostCreateSuiviCommande(String entity){
                  
-         HttpResponse<JsonNode> response = null;
-                 JSONObject newSuivi;
+        HttpResponse<JsonNode> response = null;
+        JSONObject newSuivi;
         try {
             newSuivi = new JSONObject(entity);
-            Unirest.post("http://localhost:8080/FoodoraServiceSuivi/webresources/suivi/")
+            Unirest.post("http://localhost:8080/FoodoraServiceSuiviApache/webapi/com.nrobillard.foodoraservicesuiviapache.suivicommande/")
                     .header("Content-Type", "application/json")
                     .header("accept", "application/json")
                     .body(newSuivi).asJson();
@@ -89,7 +89,7 @@ public class FoodoraSuiviWebRequests
         try 
         {
             response =
-                Unirest.get("http://localhost:8080/FoodoraServiceSuivi/webresources/suivi/count")
+                Unirest.get("http://localhost:8080/FoodoraServiceSuiviApache/webapi/com.nrobillard.foodoraservicesuiviapache.suivicommande/count")
                         .header("Content-Type", "text/html")
                         .asString();
         } 
@@ -106,7 +106,7 @@ public class FoodoraSuiviWebRequests
         try 
         {
             response =
-                    Unirest.delete("http://localhost:8080/FoodoraServiceSuivi/webresources/suivi/".concat(id))
+                    Unirest.delete("http://localhost:8080/FoodoraServiceSuiviApache/webapi/com.nrobillard.foodoraservicesuiviapache.suivicommande/".concat(id))
                     .header("Content-Type", "text/html")
                     .asString();
         } 
