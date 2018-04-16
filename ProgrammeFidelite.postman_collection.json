@@ -1,0 +1,658 @@
+{
+	"info": {
+		"_postman_id": "f0f79ed5-80fc-42b5-a93f-047979e719b8",
+		"name": "ProgrammeFidelite",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Client",
+			"description": "",
+			"item": [
+				{
+					"name": "CreateClient",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"numero\": \"123Test\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteClient",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client/MC123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"client",
+								"MC123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetClient",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client/getClient/CT12345",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"client",
+								"getClient",
+								"CT12345"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllClient",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client/getAllClient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"client",
+								"getAllClient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client/count",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"client",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MakeTransaction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client/makeTransaction/10/CT12345/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"client",
+								"makeTransaction",
+								"10",
+								"CT12345",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetSoldePoints",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client/getSoldePoints/CT12345/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"client",
+								"getSoldePoints",
+								"CT12345",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSoldeArgent",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client/getSoldeArgent/CT12345/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"client",
+								"getSoldeArgent",
+								"CT12345",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addPoints",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client/addPoints/CT12345/5/200",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"client",
+								"addPoints",
+								"CT12345",
+								"5",
+								"200"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "usePoints",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client/usePoints/CT12345/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"client",
+								"usePoints",
+								"CT12345",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SuccursaleMembre",
+			"description": "",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nom\": \"Mc Donald\",\n    \"tauxRemise\": 0.01\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/succursaleMembre",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"succursaleMembre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/succursaleMembre/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"succursaleMembre",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 6,\n    \"nom\": \"Burger King\",\n    \"tauxRemise\": 0.15\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/succursaleMembre/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"succursaleMembre",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSuccursaleMembre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/succursaleMembre/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"succursaleMembre",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllSuccursalemembre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/findAllClientSuccursale",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"clientSuccursaleMembre",
+								"findAllClientSuccursale"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/succursaleMembre/count",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"succursaleMembre",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "isSuccursaleMembre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/succursaleMembre/isSuccursaleMembre/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"succursaleMembre",
+								"isSuccursaleMembre",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTauxRemise",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/succursaleMembre/getTauxRemise/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"succursaleMembre",
+								"getTauxRemise",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "clientSuccursaleMembre",
+			"description": "",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"numero_client\": \"GDS56\",\n    \"id_succursale\": 5,\n    \"soldeArgent_client\": 0.0,\n    \"soldePoints_client\": 0\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"clientSuccursaleMembre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"id\": 4,\n        \"numero_client\": \"64684DGDY\",\n        \"id_succursale\": 7,\n        \"soldeArgent_client\": 10,\n        \"soldePoints_client\": 1000\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"clientSuccursaleMembre",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"clientSuccursaleMembre",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/findAllClientSuccursale",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"clientSuccursaleMembre",
+								"findAllClientSuccursale"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/find/CT12345/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"clientSuccursaleMembre",
+								"find",
+								"CT12345",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/count",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"clientSuccursaleMembre",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "isClientMembre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/isClientMembre/CT12345/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"TP1_ProgrammeFidelite",
+								"webService",
+								"clientSuccursaleMembre",
+								"isClientMembre",
+								"CT12345",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
