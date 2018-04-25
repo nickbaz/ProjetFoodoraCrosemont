@@ -8,6 +8,8 @@ package com.modele.classes.service;
 import com.foodoraCrosemont.Utils.ClientSuccursalemembreBuilder;
 import com.modele.classes.Client;
 import com.modele.classes.ClientSuccursalemembre;
+import com.modele.classes.Succursalemembre;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.ejb.EJB;
@@ -115,6 +117,42 @@ public class ClientSuccursalemembreFacadeREST extends AbstractFacade<ClientSuccu
             return "{\"isClientMembre\" : true}";
         else
         return "";
+    }
+    
+    @GET
+    @Path("getSuccursaleByClient/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getSuccursaleByClient(@PathParam("id") String id) {
+        List<ClientSuccursalemembre> listeClientSucc = new ArrayList<ClientSuccursalemembre>();
+        List<Succursalemembre> listeSucc = new ArrayList<Succursalemembre>();
+        
+        listeClientSucc = super.findAll();
+        
+        for(ClientSuccursalemembre clientSuccMembre : listeClientSucc) {
+            if(id.equals(clientSuccMembre.getNumeroClient().getNumero())) {
+                listeSucc.add(clientSuccMembre.getIdSuccursale());
+            }
+        }
+        
+        StringBuilder stringJson = new StringBuilder();
+        stringJson.append("[");
+        for(Succursalemembre succursale : listeSucc) {
+            stringJson.append("{\"id\" : ");
+            stringJson.append(succursale.getId());
+            stringJson.append(", \"nom\" : \"");
+            stringJson.append(succursale.getNom());
+            stringJson.append("\", \"tauxRemise\" : ");
+            stringJson.append(succursale.getTauxRemise());
+            stringJson.append("},");
+        }
+        
+        stringJson.deleteCharAt(stringJson.length()-1);
+        if(stringJson.length() == 0) {
+            return "";
+        }
+        stringJson.append("]");
+        
+        return stringJson.toString(); 
     }
     
     @Override
