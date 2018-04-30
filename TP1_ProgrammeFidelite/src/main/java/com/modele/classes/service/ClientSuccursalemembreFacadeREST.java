@@ -77,9 +77,10 @@ public class ClientSuccursalemembreFacadeREST extends AbstractFacade<ClientSuccu
         ClientSuccursalemembre csm = ClientSuccursalemembreBuilder.BuildClientSuccursalemembre(numeroClient, idSuccursale);
         csm = clientFacadeREST.FindClientSuccursalemembreByForeignKey(csm);
         
-        return "{\"id\" : "+csm.getId()+", \"numero_client\" : \""+csm.getNumeroClient().getNumero()+"\", \"id_succursale\" : "
-                + csm.getIdSuccursale().getId()+", \"soldeArgent_client\" : "+csm.getSoldeArgentclient()+", \"soldePoints_client\" : "
-                + csm.getSoldePointsclient()+"}";
+        return "{\"id\" : "+csm.getId()+", \"soldeArgentClient\" : "+csm.getSoldeArgentclient()+", \"soldePointsclient\" : "
+                + csm.getSoldePointsclient()+", \"numeroClient\" : { \"numeroClient\" : \""+csm.getNumeroClient().getNumero()+"\" }, \"idSuccursale\" : {"
+                + "\"id\" : " + csm.getIdSuccursale().getId()+", \"nom\" : \"" + csm.getIdSuccursale().getNom() + "\", \"tauxRemise\" : "
+                + csm.getIdSuccursale().getTauxRemise() + "} }";
     }
 
     @GET

@@ -66,6 +66,8 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
     @Produces({MediaType.APPLICATION_JSON})
     public String findClient(@PathParam("id") String id) {
         Client client = super.find(id);
+        if(client == null)
+            return "";
         return "{\"numero\" : \""+client.getNumero()+"\"}";
 
     }
@@ -80,6 +82,8 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
             json.append("{\"numero\" : \""+client.getNumero()+"\"},");
         }
         json.deleteCharAt(json.length()-1);
+        if(json.length() == 0)
+            return "";
         json.append("]");
         return json.toString();
     }

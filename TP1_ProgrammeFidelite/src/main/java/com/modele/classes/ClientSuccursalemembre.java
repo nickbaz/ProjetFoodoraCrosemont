@@ -7,6 +7,7 @@ package com.modele.classes;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -50,10 +51,10 @@ public class ClientSuccursalemembre implements Serializable {
     @Column(name = "soldePoints_client")
     private int soldePointsclient;
     @JoinColumn(name = "numero_client", referencedColumnName = "numero")
-    @OneToOne(optional = false)
+    @OneToOne(optional = false, cascade = CascadeType.PERSIST)
     private Client numeroClient;
     @JoinColumn(name = "id_succursale", referencedColumnName = "id")
-    @OneToOne(optional = false)
+    @OneToOne(optional = false, cascade = CascadeType.PERSIST)
     private Succursalemembre idSuccursale;
 
     public ClientSuccursalemembre() {
