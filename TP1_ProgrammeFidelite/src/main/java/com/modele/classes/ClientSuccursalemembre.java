@@ -51,10 +51,10 @@ public class ClientSuccursalemembre implements Serializable {
     @Column(name = "soldePoints_client")
     private int soldePointsclient;
     @JoinColumn(name = "numero_client", referencedColumnName = "numero")
-    @OneToOne(optional = false, cascade = CascadeType.PERSIST)
+    @OneToOne(optional = false, cascade = CascadeType.MERGE)
     private Client numeroClient;
     @JoinColumn(name = "id_succursale", referencedColumnName = "id")
-    @OneToOne(optional = false, cascade = CascadeType.PERSIST)
+    @OneToOne(optional = false, cascade = CascadeType.MERGE)
     private Succursalemembre idSuccursale;
 
     public ClientSuccursalemembre() {

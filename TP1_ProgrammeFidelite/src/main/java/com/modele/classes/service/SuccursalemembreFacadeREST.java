@@ -68,7 +68,6 @@ public class SuccursalemembreFacadeREST extends AbstractFacade<Succursalemembre>
     }
 
     @GET
-    @Path("getAllSuccursalemembre")
     @Produces({MediaType.APPLICATION_JSON})
     public String findAllSuccursalemembre() {
         StringBuilder json = new StringBuilder();

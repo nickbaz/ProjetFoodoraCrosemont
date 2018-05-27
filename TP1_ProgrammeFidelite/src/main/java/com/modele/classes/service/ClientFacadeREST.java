@@ -62,7 +62,7 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
     }
 
     @GET
-    @Path("getClient/{id}")
+    @Path("{id}")
     @Produces({MediaType.APPLICATION_JSON})
     public String findClient(@PathParam("id") String id) {
         Client client = super.find(id);
@@ -73,7 +73,6 @@ public class ClientFacadeREST extends AbstractFacade<Client> {
     }
 
     @GET
-    @Path("getAllClient")
     @Produces({MediaType.APPLICATION_JSON})
     public String findAllClient() { 
         StringBuilder json = new StringBuilder();

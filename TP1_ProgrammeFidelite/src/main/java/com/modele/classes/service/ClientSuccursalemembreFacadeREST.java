@@ -71,7 +71,7 @@ public class ClientSuccursalemembreFacadeREST extends AbstractFacade<ClientSuccu
     }
 
     @GET
-    @Path("find/{numeroClient}/{idSuccursale}")
+    @Path("{numeroClient}/{idSuccursale}")
     @Produces({MediaType.APPLICATION_JSON})
     public String findClientSuccursalemembre(@PathParam("numeroClient") String numeroClient, @PathParam("idSuccursale") Integer idSuccursale) {
         ClientSuccursalemembre csm = ClientSuccursalemembreBuilder.BuildClientSuccursalemembre(numeroClient, idSuccursale);
@@ -84,7 +84,6 @@ public class ClientSuccursalemembreFacadeREST extends AbstractFacade<ClientSuccu
     }
 
     @GET
-    @Path("findAllClientSuccursale")
     @Produces({MediaType.APPLICATION_JSON})
     public String findAllClientSuccursale() {
         StringBuilder json = new StringBuilder();
