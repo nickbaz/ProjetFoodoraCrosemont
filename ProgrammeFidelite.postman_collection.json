@@ -1,8 +1,10 @@
 {
+	"variables": [],
 	"info": {
-		"_postman_id": "f0f79ed5-80fc-42b5-a93f-047979e719b8",
 		"name": "ProgrammeFidelite",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"_postman_id": "3e0f22de-cf31-b47f-4e07-64909c415229",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
@@ -10,252 +12,145 @@
 			"description": "",
 			"item": [
 				{
-					"name": "CreateClient",
+					"name": "Find",
 					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/client/nbazinet123",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/client",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json"
+								"value": "application/json",
+								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"numero\": \"123Test\"\n}"
+							"raw": "{\n  \"numero\": \"123Test\"\n}"
 						},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"client"
-							]
-						}
+						"description": ""
 					},
 					"response": []
 				},
 				{
-					"name": "DeleteClient",
+					"name": "Delete",
 					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/client/123Test",
 						"method": "DELETE",
 						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client/MC123",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"client",
-								"MC123"
-							]
-						}
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
 					},
 					"response": []
 				},
 				{
-					"name": "GetClient",
+					"name": "FindAll",
 					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/client",
 						"method": "GET",
 						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client/getClient/CT12345",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"client",
-								"getClient",
-								"CT12345"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GetAllClient",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client/getAllClient",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"client",
-								"getAllClient"
-							]
-						}
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
 					},
 					"response": []
 				},
 				{
 					"name": "Count",
 					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/client/count",
 						"method": "GET",
 						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client/count",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"client",
-								"count"
-							]
-						}
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
 					},
 					"response": []
 				},
 				{
 					"name": "MakeTransaction",
 					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/client/makeTransaction/10/nbazinet123/5",
 						"method": "GET",
 						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client/makeTransaction/10/CT12345/5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"client",
-								"makeTransaction",
-								"10",
-								"CT12345",
-								"5"
-							]
-						}
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
 					},
 					"response": []
 				},
 				{
 					"name": "GetSoldePoints",
 					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/client/getSoldePoints/nbazinet123/5",
 						"method": "GET",
 						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client/getSoldePoints/CT12345/5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"client",
-								"getSoldePoints",
-								"CT12345",
-								"5"
-							]
-						}
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
 					},
 					"response": []
 				},
 				{
 					"name": "getSoldeArgent",
 					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/client/getSoldeArgent/nbazinet123/5",
 						"method": "GET",
 						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client/getSoldeArgent/CT12345/5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"client",
-								"getSoldeArgent",
-								"CT12345",
-								"5"
-							]
-						}
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
 					},
 					"response": []
 				},
 				{
 					"name": "addPoints",
 					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/client/addPoints/nbazinet123/5/200",
 						"method": "GET",
 						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client/addPoints/CT12345/5/200",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"client",
-								"addPoints",
-								"CT12345",
-								"5",
-								"200"
-							]
-						}
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
 					},
 					"response": []
 				},
 				{
 					"name": "usePoints",
 					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/client/usePoints/nbazinet123/5",
 						"method": "GET",
 						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/client/usePoints/CT12345/5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"client",
-								"usePoints",
-								"CT12345",
-								"5"
-							]
-						}
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
 					},
 					"response": []
 				}
@@ -266,389 +161,241 @@
 			"description": "",
 			"item": [
 				{
+					"name": "getAll",
+					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/succursaleMembre",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/succursaleMembre/13",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 13,\n    \"nom\": \"A&W\",\n    \"tauxRemise\": 0.03\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
 					"name": "Create",
 					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/succursaleMembre",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json"
+								"value": "application/json",
+								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"nom\": \"Mc Donald\",\n    \"tauxRemise\": 0.01\n}"
 						},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/succursaleMembre",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"succursaleMembre"
-							]
-						}
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Find",
+					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/succursaleMembre/5",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
 					},
 					"response": []
 				},
 				{
 					"name": "Delete",
 					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/succursaleMembre/16",
 						"method": "DELETE",
 						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/succursaleMembre/9",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"succursaleMembre",
-								"9"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Edit",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": 6,\n    \"nom\": \"Burger King\",\n    \"tauxRemise\": 0.15\n}"
+							"raw": ""
 						},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/succursaleMembre/6",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"succursaleMembre",
-								"6"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getSuccursaleMembre",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/succursaleMembre/5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"succursaleMembre",
-								"5"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getAllSuccursalemembre",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/findAllClientSuccursale",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"clientSuccursaleMembre",
-								"findAllClientSuccursale"
-							]
-						}
+						"description": ""
 					},
 					"response": []
 				},
 				{
 					"name": "count",
 					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/succursaleMembre/count",
 						"method": "GET",
 						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/succursaleMembre/count",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"succursaleMembre",
-								"count"
-							]
-						}
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
 					},
 					"response": []
 				},
 				{
 					"name": "isSuccursaleMembre",
 					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/succursaleMembre/isSuccursaleMembre/5",
 						"method": "GET",
 						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/succursaleMembre/isSuccursaleMembre/5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"succursaleMembre",
-								"isSuccursaleMembre",
-								"5"
-							]
-						}
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
 					},
 					"response": []
 				},
 				{
 					"name": "getTauxRemise",
 					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/succursaleMembre/getTauxRemise/5",
 						"method": "GET",
 						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/succursaleMembre/getTauxRemise/5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"succursaleMembre",
-								"getTauxRemise",
-								"5"
-							]
-						}
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
 					},
 					"response": []
 				}
 			]
 		},
 		{
-			"name": "clientSuccursaleMembre",
+			"name": "ClientSuccursaleMembre",
 			"description": "",
 			"item": [
 				{
-					"name": "Create",
+					"name": "getAll",
 					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"numero_client\": \"GDS56\",\n    \"id_succursale\": 5,\n    \"soldeArgent_client\": 0.0,\n    \"soldePoints_client\": 0\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"clientSuccursaleMembre"
-							]
-						}
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
 					},
 					"response": []
 				},
 				{
-					"name": "Edit",
+					"name": "Create",
 					"request": {
-						"method": "PUT",
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json"
+								"value": "application/json",
+								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"id\": 4,\n        \"numero_client\": \"64684DGDY\",\n        \"id_succursale\": 7,\n        \"soldeArgent_client\": 10,\n        \"soldePoints_client\": 1000\n    }"
+							"raw": "{\r\n\t\"id\": 0,\r\n\t\"soldeArgentClient\": 0,\r\n\t\"soldePointsclient\": 0,\r\n\t\"numeroClient\": {\r\n\t\t\"numero\": \"Marc123\"\r\n\t},\r\n\t\"idSuccursale\": {\r\n\t\t\"id\": 11,\r\n\t\t\"nom\": \"Burger King\",\r\n\t\t\"tauxRemise\": 0.03\r\n\t}\r\n}"
 						},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/4",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"clientSuccursaleMembre",
-								"4"
-							]
-						}
+						"description": ""
 					},
 					"response": []
 				},
 				{
 					"name": "Delete",
 					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/12",
 						"method": "DELETE",
 						"header": [],
 						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/3",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"clientSuccursaleMembre",
-								"3"
-							]
-						}
+						"description": ""
 					},
 					"response": []
 				},
 				{
-					"name": "findAll",
+					"name": "Count",
 					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/count",
 						"method": "GET",
 						"header": [],
 						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/findAllClientSuccursale",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"clientSuccursaleMembre",
-								"findAllClientSuccursale"
-							]
-						}
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "getSuccursaleByClient",
+					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/getSuccursaleByClient/Marc123",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t    \"numero_client\": \"Marc123\",\n\t    \"id_succursale\": 5,\n\t    \"soldeArgent_client\": 0,\n\t    \"soldePoints_client\": 0\n\t}\n]"
+						},
+						"description": ""
 					},
 					"response": []
 				},
 				{
 					"name": "find",
 					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/nbazinet123/5",
 						"method": "GET",
 						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/find/CT12345/5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"clientSuccursaleMembre",
-								"find",
-								"CT12345",
-								"5"
-							]
-						}
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
 					},
 					"response": []
 				},
 				{
 					"name": "count",
 					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/count",
 						"method": "GET",
 						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/count",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"clientSuccursaleMembre",
-								"count"
-							]
-						}
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
 					},
 					"response": []
 				},
 				{
 					"name": "isClientMembre",
 					"request": {
+						"url": "https://tomcat.dept-info.crosemont.quebec/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/isClientMembre/nbazinet123/5",
 						"method": "GET",
 						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/TP1_ProgrammeFidelite/webService/clientSuccursaleMembre/isClientMembre/CT12345/5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"TP1_ProgrammeFidelite",
-								"webService",
-								"clientSuccursaleMembre",
-								"isClientMembre",
-								"CT12345",
-								"5"
-							]
-						}
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
 					},
 					"response": []
 				}
